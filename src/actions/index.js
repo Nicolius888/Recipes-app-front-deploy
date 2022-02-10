@@ -3,7 +3,9 @@ import axios from "axios";
 export function getRecipes() {
   return async function (dispatch) {
     try {
-      const recipes = await axios.get("http://localhost:3001/recipes");
+      const recipes = await axios.get(
+        "https://nico-recipes-app-backend.herokuapp.com/recipes"
+      );
       return dispatch({
         type: "GET_RECIPES",
         payload: recipes.data,
@@ -40,7 +42,7 @@ export function searchByName(payload) {
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `http://localhost:3001/recipes?name=${payload}`
+        `https://nico-recipes-app-backend.herokuapp.com/recipes?name=${payload}`
       );
       return dispatch({
         type: "SEARCH_BY_NAME",
@@ -58,7 +60,7 @@ export function searchByName(payload) {
 export function postRecipe(payload) {
   return async function () {
     const postRecipe = await axios.post(
-      "http://localhost:3001/recipes",
+      "https://nico-recipes-app-backend.herokuapp.com/recipes",
       payload
     );
     return postRecipe;
@@ -67,7 +69,10 @@ export function postRecipe(payload) {
 export function getTypes() {
   return async function () {
     try {
-      const types = await axios.get("http://localhost:3001/types", {});
+      const types = await axios.get(
+        "https://nico-recipes-app-backend.herokuapp.com/types",
+        {}
+      );
       return console.log(types.data);
     } catch (error) {
       console.log("Error getting types", error);
@@ -77,7 +82,9 @@ export function getTypes() {
 export function getDetail(id) {
   return async function (dispatch) {
     try {
-      const detail = await axios.get(`http://localhost:3001/recipes/${id}`);
+      const detail = await axios.get(
+        `https://nico-recipes-app-backend.herokuapp.com/recipes/${id}`
+      );
       return dispatch({
         type: "GET_DETAIL",
         payload: detail.data,
